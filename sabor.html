@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Sabor Imperial</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sección activa para mostrar solo una sección */
+        .section {
+            display: none;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;  /* Asegura que cada sección ocupe toda la altura */
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Sección Hero */
+        .hero {
+            background-image: url('hero2.jpeg');
+            background-size: cover;
+            color: black;
+            padding: 80px 0;
+            text-align: center;
+            margin: 0;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+        }
+
+        /* Barra de navegación */
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav button {
+            color: white;
+            background: none;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            background: #555;
+        }
+
+        /* Estilo para la galería de imágenes */
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .image-gallery .item {
+            text-align: center;
+        }
+
+        .image-gallery img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* Pie de página */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Sección Acerca de Nosotros */
+        .about, .services {
+            margin: 50px 0;
+        }
+
+        .about h2, .services h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .about p, .services p {
+            font-size: 1.2em;
+        }
+
+        /* Ajustes para asegurar que no haya espacio extra */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Ajuste de márgenes para cada sección */
+        section {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Carrito de compras */
+        #cart {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        #cart h3 {
+            margin-bottom: 10px;
+        }
+
+        #cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart ul li {
+            padding: 5px 0;
+        }
+
+        #cart button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #cart button:hover {
+            background-color: #555;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="Logo de El Sabor Imperial" style="width: 150px; margin-top: 20px; ">
+    </header>
+
+    <nav>
+        <button onclick="showHome()">Inicio</button>
+        <button onclick="showSection('menu')">Menú</button>
+        <button onclick="showSection('about')">Acerca de Nosotros</button>
+        <button onclick="showSection('reservations')">Reservaciones</button>
+        <button onclick="showSection('services')">Servicios</button>
+         <button onclick="showSection('location')">Ubicación</button>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section class="hero">
+        <h1>Bienvenidos a El Sabor Imperial</h1>
+        <p>Disfruta de una experiencia gastronómica única con los mejores sabores del mundo.</p>
+    </section>
+
+    <!-- Sección Acerca de Nosotros -->
+    <section id="about" class="section">
+        <h1>Acerca de Nosotros</h1>
+        <div class="about">
+            <h2>Nuestra Historia</h2>
+            <p>El Sabor Imperial comenzó como un pequeño restaurante familiar, inspirado por el amor por la comida de calidad y la pasión por los sabores autóctonos. Con los años, hemos crecido y evolucionado, ofreciendo no solo platos tradicionales, sino también innovadoras combinaciones internacionales que han conquistado a nuestros clientes. Nuestra misión es crear experiencias memorables para cada comensal, con un servicio excelente y un ambiente acogedor.</p>
+        </div>
+    </section>
+
+    <!-- Sección Servicios o Productos -->
+    <section id="services" class="section">
+        <h1>Servicios</h1>
+        <div class="services">
+            <h2>¿Qué ofrecemos?</h2>
+            <p>En El Sabor Imperial, nos enorgullece ofrecer una variedad de platos que van desde opciones locales tradicionales hasta platos internacionales innovadores. Nuestros servicios incluyen:</p>
+            <ul>
+                <li><strong>Menú a la carta:</strong> Con una extensa selección de platos para todos los gustos.</li>
+                <li><strong>Reservaciones en línea:</strong> Facilita la planificación de tu visita.</li>
+                <li><strong>Eventos y catering:</strong> Disponemos de servicios para eventos especiales y celebraciones.</li>
+                <li><strong>Descuentos y promociones:</strong> Ofrecemos descuentos especiales y promociones en fechas selectas.</li>
+            </ul>
+            <p>Además, estamos comprometidos con la calidad de nuestros productos, la frescura de los ingredientes y el respeto por las tradiciones culinarias.</p>
+        </div>
+    </section>
+
+    <!-- Sección Menú -->
+    <section id="menu" class="section active">
+        <h1>Menú</h1>
+        <div class="image-gallery">
+            <!-- Platos con imágenes, descripciones y precios -->
+            <div class="item">
+                <img src="plato1.jpeg" alt="Hamburguesa">
+                <p>Hamburguesa - $5.99</p>
+                <button onclick="addItemToCart('Hamburguesa', 5.99)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato2.jpeg" alt="Pizza">
+                <p>Pizza - $7.99</p>
+                <button onclick="addItemToCart('Pizza', 7.99)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato3.jpeg" alt="Sushi">
+                <p>Sushi - $8.50</p>
+                <button onclick="addItemToCart('Sushi', 8.50)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato4.png" alt="Tacos">
+                <p>Tacos - $4.50</p>
+                <button onclick="addItemToCart('Tacos', 4.50)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato5.jpg" alt="Ensalada">
+                <p>Ensalada - $6.00</p>
+                <button onclick="addItemToCart('Ensalada', 6.00)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato6.jpg" alt="Pasta">
+                <p>Pasta - $9.99</p>
+                <button onclick="addItemToCart('Pasta', 9.99)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato7.png" alt="Pollo Asado">
+                <p>Pollo Asado - $10.00</p>
+                <button onclick="addItemToCart('Pollo Asado', 10.00)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato8.jpeg" alt="Ceviche">
+                <p>Ceviche - $7.50</p>
+                <button onclick="addItemToCart('Ceviche', 7.50)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato9.jpg" alt="Sopa">
+                <p>Sopa - $4.20</p>
+                <button onclick="addItemToCart('Sopa', 4.20)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato10.jpg" alt="Paella">
+                <p>Paella - $12.00</p>
+                <button onclick="addItemToCart('Paella', 12.00)">Agregar al Carrito</button>
+            </div>
+            <!-- Repite hasta las 20 imágenes -->
+            <div class="item">
+                <img src="plato11.jpeg" alt="Plato Especial">
+                <p>Plato Especial - $14.00</p>
+                <button onclick="addItemToCart('Plato Especial', 14.00)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato12.jpeg" alt="langosta">
+                <p>langosta - $11.50</p>
+                <button onclick="addItemToCart('langosta', 25.50)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato13.jpeg" alt="Solomillo Cordero">
+                <p>Cordero - $16.00</p>
+                <button onclick="addItemToCart('Solomillon Cordero', 16.00)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato14.jpg" alt="Tortilla Española">
+                <p>Tortilla Española - $5.30</p>
+                <button onclick="addItemToCart('Tortilla Española', 5.30)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato15.jpg" alt="Burritos">
+                <p>Burritos - $6.90</p>
+                <button onclick="addItemToCart('Burritos', 6.90)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato16.jpg" alt="Arepa">
+                <p>Arepa - $3.99</p>
+                <button onclick="addItemToCart('Arepa', 3.99)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato17.jpg" alt="Tostadas">
+                <p>Tostadas - $4.00</p>
+                <button onclick="addItemToCart('Tostadas', 4.00)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato18.jpg" alt="Croquetas">
+                <p>Croquetas - $3.70</p>
+                <button onclick="addItemToCart('Croquetas', 3.70)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato19.jpg" alt="Empanadas">
+                <p>Empanadas - $2.50</p>
+                <button onclick="addItemToCart('Empanadas', 2.50)">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <img src="plato20.jpg" alt="Helado">
+                <p>Helado - $3.00</p>
+                <button onclick="addItemToCart('Helado', 3.00)">Agregar al Carrito</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reservaciones -->
+    <section id="reservations" class="section">
+        <h1>Reservaciones</h1>
+        <form id="reservationForm" method="POST" action="reservar.php">
+           <label>Nombre: <input type="text" id="name" name="name" required></label><br>
+            <label>Fecha: <input type="date" id="date" name="date" required></label><br>
+            <label>Número de personas: <input type="number" id="num_people" name="num_people" required min="1"></label><br>
+            <button type="submit">Reservar</button>
+        </form>
+        <p id="confirmation" style="color: green;"></p>
+    </section>
+    <style>
+    .reservation-container {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #reservationForm {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #reservationForm label {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    #reservationForm input {
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    #reservationForm button {
+        margin-top: 15px;
+        padding: 12px;
+        background: #333;
+        color: white;
+        border: none;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    #reservationForm button:hover {
+        background: #555;
+    }
+</style>
+<!-- Sección Ubicación -->
+<section id="location" class="section">
+    <h1>Ubicación</h1>
+    <p>Nos encontramos en la Av. Principal 123, Ciudad Imperial.</p>
+
+    <div class="fake-map">
+        <img src="mapa.png" alt="Mapa Simulado">
+        <div class="marker" title="El Sabor Imperial"></div>
+    </div>
+</section>
+
+<style>
+    .fake-map {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        height: 400px;
+        margin: auto;
+        background: #ddd;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .fake-map img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .marker {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: red;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .marker:hover {
+        transform: translate(-50%, -50%) scale(1.3);
+        background: darkred;
+    }
+</style>
+
+    <div id="cart">
+        <h3>Tu Carrito</h3>
+        <ul id="cartItems">
+            <!-- Items del carrito se agregarán aquí -->
+        </ul>
+        <p>Total: $<span id="total">0.00</span></p>
+        <button onclick="applyDiscount()">Aplicar Descuento</button>
+        <p>Descuento Aplicado: $<span id="discount">0.00</span></p>
+    </div>
+
+    <footer class="footer">
+        <p>Horario: Lunes a Viernes: 10:00 AM - 10:00 PM | Sábado y Domingo: 12:00 PM - 11:00 PM</p>
+        <p>&copy; 2025 El Sabor Imperial | Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+             document.querySelector('.hero').style.display = "none";
+        }
+         function showHome() {
+        // Mostrar la hero y ocultar todas las demás secciones
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.querySelector('.hero').style.display = "block";
+    }
+
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('reservar.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('confirmation').innerText = data;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Carrito y descuento
+        let cart = [];
+        let total = 0;
+
+        function addItemToCart(name, price) {
+            cart.push({name: name, price: price});
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            cartItems.innerHTML = ''; // Limpiar los elementos anteriores
+            
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name}: $${item.price}`;
+                cartItems.appendChild(li);
+            });
+
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+
+        function applyDiscount() {
+            let discount = 0;
+
+            // Por ejemplo, si el total es mayor a $15, aplica un descuento del 10%
+            if (total > 15) {
+                discount = total * 0.1;
+            }
+
+            const discountedTotal = total - discount;
+            document.getElementById('discount').textContent = discount.toFixed(2);
+            document.getElementById('total').textContent = discountedTotal.toFixed(2);
+        }
+    </script>
+</body>
+</html>
