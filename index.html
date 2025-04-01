@@ -412,9 +412,7 @@
 
     <div id="cart">
         <h3>Tu Carrito</h3>
-        <ul id="cartItems">
-            <!-- Items del carrito se agregarán aquí -->
-        </ul>
+        <ul id="cartItems"></ul>
         <p>Total: $<span id="total">0.00</span></p>
         <button onclick="applyDiscount()">Aplicar Descuento</button>
         <p>Descuento Aplicado: $<span id="discount">0.00</span></p>
@@ -463,11 +461,15 @@
 
         function updateCart() {
             const cartItems = document.getElementById('cartItems');
-            cartItems.innerHTML = ''; // Limpiar los elementos anteriores
+            if (!cartItems) {
+                console.error("no se encontro el elemento con ID 'cartItems'");
+                    return;
+            }
+            cartItems.innerHTML = ""; // Limpiar los elementos anteriores
             
             cart.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = `${item.name}: $${item.price}`;
+                li.textContent = `${item.name}: $${item.price.toFixed(2)}`;
                 cartItems.appendChild(li);
             });
 
@@ -477,13 +479,16 @@
         function applyDiscount() {
             let discount = 0;
 
-            // Por ejemplo, si el total es mayor a $15, aplica un descuento del 10%
+            //  si el total es mayor a $15, aplica un descuento del 10%
             if (total > 15) {
                 discount = total * 0.1;
             }
 
             const discountedTotal = total - discount;
-            document.getElementById('discount').textContent = discount.toFixed(2);
+            if
+            (document.getElementById('discount')) {
+                document.getElementById('discount').textContent = discount.toFixed(2);
+            }
             document.getElementById('total').textContent = discountedTotal.toFixed(2);
         }
     </script>
